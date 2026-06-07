@@ -3,6 +3,10 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #d4e4fa;
+  --secondary: #cbc3d7;
+  --therty: #d0bcff;
+  --yellow: #ffb95f;
 }
 
 @theme inline {
@@ -10,6 +14,11 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-manrope: var(--font-manrope);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-therty: var(--therty);
+  --color-yellow: var(--yellow);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +31,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-manrope), Arial, Helvetica, sans-serif;
 }
