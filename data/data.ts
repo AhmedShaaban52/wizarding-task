@@ -54,8 +54,9 @@ export const stats = [
 ];
 
 export const bars = [
-  39, 60, 35, 75, 40, 80, 50, 90, 65, 40, 78, 50, 40, 60, 66, 35, 40, 45, 80,
+  40, 55, 35, 58, 70, 35, 70, 55, 40, 50, 30, 60
 ];
+
 export const gridLines = [25, 50, 75, 100];
 export const labels = ["Moon Start", "Full Moon", "Moon End"];
 
@@ -66,12 +67,32 @@ export const specialties = [
 ];
 
 export const tableHeaders = [
-    { label: "ID", className: "lg:pt-[25.5px] py-4 lg:pb-6.75 px-1 lg:px-6 lg:font-semibold text-xs lg:text-sm text-center lg:text-left" },
-    { label: "First Name", className: "lg:pt-[25.5px] py-4 lg:pb-6.75 px-1 lg:px-6 lg:font-semibold text-xs lg:text-sm" },
-    { label: "Last Name", className: "lg:pt-[25.5px] py-4 lg:pb-6.75 px-1 lg:px-6 lg:font-semibold text-xs lg:text-sm" },
-    { label: "Associated Elixirs", className: "lg:pt-[25.5px] py-4 lg:pb-6.75 lg:px-6 lg:font-semibold text-xs lg:text-sm" },
-    { label: "Actions", className: "lg:pt-[25.5px] py-4 lg:pb-6.75 pr-8 lg:px-6 lg:font-semibold text-xs lg:text-sm text-right" },
-]
+  {
+    label: "ID",
+    className:
+      "lg:pt-[25.5px] py-4 lg:pb-6.75 px-1 lg:px-6 lg:font-semibold text-xs lg:text-sm text-center lg:text-left",
+  },
+  {
+    label: "First Name",
+    className:
+      "lg:pt-[25.5px] py-4 lg:pb-6.75 px-1 lg:px-6 lg:font-semibold text-xs lg:text-sm",
+  },
+  {
+    label: "Last Name",
+    className:
+      "lg:pt-[25.5px] py-4 lg:pb-6.75 px-1 lg:px-6 lg:font-semibold text-xs lg:text-sm",
+  },
+  {
+    label: "Associated Elixirs",
+    className:
+      "lg:pt-[25.5px] py-4 lg:pb-6.75 lg:px-6 lg:font-semibold text-xs lg:text-sm",
+  },
+  {
+    label: "Actions",
+    className:
+      "lg:pt-[25.5px] py-4 lg:pb-6.75 pr-8 lg:px-6 lg:font-semibold text-xs lg:text-sm text-right",
+  },
+];
 
 export const wizardRegistry = [
   {

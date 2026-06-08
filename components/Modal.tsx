@@ -6,14 +6,8 @@ import pencilIcon from "@/public/pencilIcon.svg"
 import injectionIcon from "@/public/injectionIcon.svg"
 import flaskIcon from "@/public/flaskIcon.svg"
 import { FaChevronRight } from "react-icons/fa6"
+import { Wizard } from "@/types/types"
 
-export type Wizard = {
-    id: string
-    first: string
-    last: string
-    elixirs: string[]
-    color: string
-}
 
 type ModalProps = {
     wizard: Wizard | null
@@ -25,7 +19,7 @@ const Modal = ({ wizard, onClose }: ModalProps) => {
 
     return (
         <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-[#051424B2]/70 opacity-70 backdrop-blur-md px-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-[#051424B2]/70 backdrop-blur-md px-4"
             onClick={onClose}
         >
             <div
@@ -38,7 +32,7 @@ const Modal = ({ wizard, onClose }: ModalProps) => {
                             Member Profile
                         </p>
                         <h2 className="text-primary font-manrope font-semibold text-3xl leading-tight tracking-[-0.32px]">
-                            Mrs Skower
+                            {wizard.firstName ?? "—"} {wizard.lastName ?? "—"}
                         </h2>
                     </div>
                     <div className="text-right">
@@ -46,7 +40,7 @@ const Modal = ({ wizard, onClose }: ModalProps) => {
                             Registry ID
                         </p>
                         <p className="text-yellow font-manrope font-semibold text-lg tracking-wide">
-                            WR-1897-MS
+                            {wizard.id.slice(0, 12).toUpperCase()}
                         </p>
                     </div>
                 </div>
@@ -88,12 +82,12 @@ const Modal = ({ wizard, onClose }: ModalProps) => {
                                 <div className="p-5">
                                     <p className="text-secondary font-manrope mb-2">First Name</p>
                                     <p className="text-primary font-manrope font-semibold">
-                                        Skower
+                                        {wizard.firstName ?? "Unknown"}
                                     </p>
                                 </div>
                                 <div className="p-5">
                                     <p className="text-secondary font-manrope font-normal mb-2">Last Name</p>
-                                    <p className="text-primary font-manrope font-semibold">Unknown</p>
+                                    <p className="text-primary font-manrope font-semibold">{wizard.lastName ?? "Unknown"}</p>
                                 </div>
                                 <div className="p-5">
                                     <p className="text-secondary font-manrope font-normal mb-2">Registry Status</p>
@@ -123,32 +117,23 @@ const Modal = ({ wizard, onClose }: ModalProps) => {
                                     >
                                         <div className="flex flex-col gap-3 w-full">
                                             <div className="flex flex-col gap-3 w-full">
-                                                <div className="group flex items-center justify-between p-4 bg-[#1C2B3C66] border border-[#0b1a29]/60 rounded-xl transition-all cursor-pointer">
-                                                    <div className="flex items-center gap-3">
-                                                        <div className="w-9 h-9 rounded-lg bg-[#1C2B3C66] border border-[#494454]/30 flex items-center justify-center shrink-0">
-                                                            <Image src={injectionIcon} alt="injectionIcon" />
+                                                {wizard.elixirs.length > 0 ? (
+                                                    wizard.elixirs.map((elixir) => (
+                                                        <div key={elixir.id} className="group flex items-center justify-between p-4 bg-[#1C2B3C66] border border-[#0b1a29]/60 rounded-xl transition-all cursor-pointer">
+                                                            <div className="flex items-center gap-3">
+                                                                <div className="w-9 h-9 rounded-lg bg-[#1C2B3C66] border border-[#494454]/30 flex items-center justify-center shrink-0">
+                                                                    <Image src={injectionIcon} alt="injectionIcon" />
+                                                                </div>
+                                                                <div>
+                                                                    <p className="text-primary font-manrope font-normal">{elixir.name}</p>
+                                                                </div>
+                                                            </div>
+                                                            <FaChevronRight size={12} className="text-secondary group-hover:text-primary transition-colors shrink-0" />
                                                         </div>
-                                                        <div>
-                                                            <p className="text-primary font-manrope font-normal">Mrs Skower's All-Purpose Magical Mess Remover</p>
-                                                            <p className="text-secondary font-manrope font-normal mt-0.5">Inventory: 142 Units</p>
-                                                        </div>
-                                                    </div>
-                                                    <FaChevronRight size={12} className="text-secondary group-hover:text-primary transition-colors shrink-0" />
-                                                </div>
-                                            </div>
-                                            <div className="flex flex-col gap-3 w-full">
-                                                <div className="group flex items-center justify-between p-4 bg-[#1C2B3C66] border border-[#0b1a29]/60 rounded-xl transition-all cursor-pointer">
-                                                    <div className="flex items-center gap-3">
-                                                        <div className="w-9 h-9 rounded-lg bg-[#1C2B3C66] border border-[#494454]/30 flex items-center justify-center shrink-0">
-                                                            <Image src={injectionIcon} alt="injectionIcon" />
-                                                        </div>
-                                                        <div>
-                                                            <p className="text-primary font-manrope text-sm font-medium">Scouring Solution Grade IV</p>
-                                                            <p className="text-secondary font-manrope  mt-0.5">Inventory: 12 Units Close Edit Record</p>
-                                                        </div>
-                                                    </div>
-                                                    <FaChevronRight size={12} className="text-secondary group-hover:text-primary transition-colors shrink-0" />
-                                                </div>
+                                                    ))
+                                                ) : (
+                                                    <p className="text-[#CBC3D780]/50 text-xs font-medium font-manrope">No elixirs registered</p>
+                                                )}
                                             </div>
                                         </div>
                                     </div>

@@ -1,8 +1,23 @@
+"use client"
+
 import { bars, gridLines, labels, specialties } from "@/data/data"
+import {
+    BarChart, Bar, ResponsiveContainer, Cell,
+    PieChart, Pie, Cell as PieCell,
+} from "recharts"
+
+const barData = bars.map((value, i) => ({ value, index: i }))
+
+const pieData = [
+    { name: "Alchemists", value: 45, color: "#D0BCFF" },
+    { name: "Transmuters", value: 30, color: "#FBB040" },
+    { name: "Conjurers", value: 25, color: "#BCC7DE" },
+]
 
 const RegistryActivityChart = () => {
     return (
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-y-6 xl:gap-x-6 lg:pt-6">
+
             <div className="lg:col-span-2 bg-[#061424] border border-[#494454]/30 p-6 rounded-2xl flex flex-col justify-between">
                 <div className="flex justify-between items-center mb-6">
                     <h3 className="text-xl lg:text-2xl text-primary font-manrope font-semibold leading-8">
@@ -12,8 +27,9 @@ const RegistryActivityChart = () => {
                         Last 30 Days
                     </span>
                 </div>
+
                 <div className="relative">
-                    <div className="relative h-40 flex items-end justify-between gap-2 px-1">
+                    <div className="relative h-48">
                         {gridLines.map((v) => (
                             <div
                                 key={v}
@@ -21,15 +37,15 @@ const RegistryActivityChart = () => {
                                 style={{ bottom: `${v}%` }}
                             />
                         ))}
-                        <div className="flex items-end gap-2 h-48 w-full">
-                            {bars.map((height, idx) => (
-                                <div
-                                    key={idx}
-                                    className="w-full md:w-9.75 bg-therty/20 rounded-t-xs hover:bg-therty/40 transition-colors relative z-10"
-                                    style={{ height: `${height}%` }}
-                                />
-                            ))}
-                        </div>
+                        <ResponsiveContainer width="100%" height="100%">
+                            <BarChart data={barData} barCategoryGap="20%">
+                                <Bar dataKey="value" radius={[2, 2, 0, 0]}>
+                                    {barData.map((_, idx) => (
+                                        <Cell key={idx} fill="rgba(208,188,255,0.2)" />
+                                    ))}
+                                </Bar>
+                            </BarChart>
+                        </ResponsiveContainer>
                     </div>
                     <div className="flex justify-between font-manrope font-medium text-[12px] text-secondary mt-3">
                         {labels.map((label) => (
@@ -43,14 +59,33 @@ const RegistryActivityChart = () => {
                 <h3 className="text-xl lg:text-2xl text-primary font-manrope font-semibold mb-4">
                     Wizards by Specialty
                 </h3>
+
                 <div className="relative flex items-center justify-center my-2">
-                    <div className="w-32 h-32 rounded-full border-16 border-[#273647] flex items-center justify-center">
-                        <div className="text-center">
-                            <span className="text-xl font-bold text-white block">1.2k</span>
-                            <span className="text-[10px] text-slate-500 uppercase">Total</span>
-                        </div>
+                    <ResponsiveContainer width={128} height={128}>
+                        <PieChart>
+                            <Pie
+                                data={pieData}
+                                cx="50%"
+                                cy="50%"
+                                innerRadius={44}
+                                outerRadius={60}
+                                startAngle={90}
+                                endAngle={-270}
+                                dataKey="value"
+                                strokeWidth={0}
+                            >
+                                {pieData.map((entry, idx) => (
+                                    <PieCell key={idx} fill={entry.color} />
+                                ))}
+                            </Pie>
+                        </PieChart>
+                    </ResponsiveContainer>
+                    <div className="absolute flex flex-col items-center justify-center pointer-events-none">
+                        <span className="text-xl font-bold text-white block">1.2k</span>
+                        <span className="text-[10px] text-slate-500 uppercase">Total</span>
                     </div>
                 </div>
+
                 <div className="space-y-1.5 text-sm text-primary font-manrope mt-2">
                     {specialties.map((s) => (
                         <div key={s.label} className="flex justify-between items-center">
