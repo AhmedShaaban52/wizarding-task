@@ -33,10 +33,15 @@ const RegistryActivityChart = () => {
                             />
                         ))}
                         <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={barData} barCategoryGap="20%">
+                            <BarChart
+                                data={barData}
+                                barCategoryGap="20%"
+                                accessibilityLayer={false}
+                                className="focus:outline-hidden [&_.recharts-surface]:outline-hidden select-none pointer-events-none" 
+                            >
                                 <Bar dataKey="value" radius={[2, 2, 0, 0]}>
                                     {barData.map((_, idx) => (
-                                        <Cell key={idx} fill="rgba(208,188,255,0.2)" />
+                                        <Cell key={idx} fill="rgba(208,188,255,0.2)" className="focus:outline-hidden" />
                                     ))}
                                 </Bar>
                             </BarChart>
@@ -57,7 +62,7 @@ const RegistryActivityChart = () => {
 
                 <div className="relative flex items-center justify-center my-2">
                     <ResponsiveContainer width={128} height={128}>
-                        <PieChart>
+                        <PieChart className="select-none pointer-events-none">
                             <Pie
                                 data={pieData}
                                 cx="50%"

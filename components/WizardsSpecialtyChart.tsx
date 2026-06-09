@@ -1,7 +1,7 @@
 "use client"
 
 import { BiFilterAlt, BiShow } from "react-icons/bi";
-import { IoIosSearch } from "react-icons/io";
+import { IoIosCloseCircle, IoIosSearch } from "react-icons/io";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Modal from "./Modal";
 import { useState, useEffect, useRef } from "react";
@@ -18,6 +18,7 @@ const WizardsSpecialtyChart = () => {
     const [debouncedSearch, setDebouncedSearch] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const { data, isLoading, isError } = useQuery({
         queryKey: ["wizards"],
@@ -35,6 +36,13 @@ const WizardsSpecialtyChart = () => {
             if (debounceRef.current) clearTimeout(debounceRef.current);
         };
     }, [searchInput]);
+
+    const handleClearSearch = () => {
+        setSearchInput("");
+        setDebouncedSearch("");
+        setCurrentPage(1);
+        inputRef.current?.focus();
+    };
 
     // Filter client-side by firstName or lastName
     const filtered = debouncedSearch.trim() === ""
@@ -73,15 +81,25 @@ const WizardsSpecialtyChart = () => {
                     Master Wizard Registry
                 </h3>
                 <div className="flex items-center w-full lg:w-1/2 xl:max-w-md bg-[#111F31]/40 border border-secondary/10 rounded-xl h-11 px-4 font-manrope">
-                    <div className="relative flex-1 flex items-center h-full">
-                        <IoIosSearch size={18} className="text-secondary absolute left-0" />
+                    <div className="relative flex-1 flex items-center h-full gap-2">
+                        <IoIosSearch size={18} className="text-secondary shrink-0" />
                         <input
+                            ref={inputRef}
                             type="text"
                             value={searchInput}
                             onChange={(e) => setSearchInput(e.target.value)}
                             placeholder="Search wizards..."
-                            className="w-full h-full text-sm pl-4 lg:pl-7 pr-4 text-primary placeholder-secondary/50 focus:outline-none bg-transparent"
+                            className="flex-1 h-full text-sm text-primary placeholder-secondary/50 focus:outline-none bg-transparent"
                         />
+                        {searchInput && (
+                            <button
+                                onClick={handleClearSearch}
+                                className="text-secondary/60 hover:text-primary transition-colors cursor-pointer p-1 shrink-0"
+                                title="Clear search"
+                            >
+                                <IoIosCloseCircle size={18} />
+                            </button>
+                        )}
                     </div>
                     <div className="h-5 border-l border-secondary/10 mx-2" />
                     <button className="flex items-center gap-2 h-full px-2 text-sm text-secondary">
@@ -186,9 +204,9 @@ const WizardsSpecialtyChart = () => {
                             key={page}
                             onClick={() => setCurrentPage(page)}
                             className={`w-6 h-6 rounded ${currentPage === page
-                                ? "bg-therty text-[#3C0091] font-normal"
+                                ? "bg-therty text-[#3C0091] font-normal "
                                 : "hover:bg-[#0b1a29] text-secondary"
-                                }`}
+                                } cursor-pointer`}
                         >
                             {page}
                         </button>
