@@ -91,8 +91,8 @@ const WizardsSpecialtyChart = () => {
                 </div>
             </div>
 
-            <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse text-xs">
+            <div className="w-full overflow-x-auto scrollbar-thin">
+                <table className="w-full text-left border-collapse text-xs min-w-200">
                     <thead>
                         <tr className="border-b border-[#0b1a29] text-secondary bg-[#111F31]/40 uppercase tracking-wider text-[10px] text-left">
                             {tableHeaders.map((header) => (
@@ -106,11 +106,11 @@ const WizardsSpecialtyChart = () => {
                         {isLoading ? (
                             Array.from({ length: ROWS_PER_PAGE }).map((_, i) => (
                                 <tr key={i} className="animate-pulse">
-                                    <td className="py-4 px-6"><div className="h-3 bg-[#111F31] rounded w-24" /></td>
-                                    <td className="py-4 px-6"><div className="h-3 bg-[#111F31] rounded w-20" /></td>
-                                    <td className="py-4 px-6"><div className="h-3 bg-[#111F31] rounded w-24" /></td>
-                                    <td className="py-4 px-6"><div className="h-3 bg-[#111F31] rounded w-40" /></td>
-                                    <td className="py-4 px-6"><div className="h-3 bg-[#111F31] rounded w-8 ml-auto" /></td>
+                                    <td className="py-4 px-1"><div className="h-3 bg-[#111F31] rounded w-24" /></td>
+                                    <td className="py-4 px-1"><div className="h-3 bg-[#111F31] rounded w-20" /></td>
+                                    <td className="py-4 px-1"><div className="h-3 bg-[#111F31] rounded w-24" /></td>
+                                    <td className="py-4 px-1"><div className="h-3 bg-[#111F31] rounded w-40" /></td>
+                                    <td className="py-4 px-1"><div className="h-3 bg-[#111F31] rounded w-8 ml-auto" /></td>
                                 </tr>
                             ))
                         ) : isError ? (
@@ -131,10 +131,10 @@ const WizardsSpecialtyChart = () => {
                                     <td className="font-manrope font-normal text-therty py-4 px-6 text-xs">
                                         {wizard.id.slice(0, 18)}...
                                     </td>
-                                    <td className="py-7 lg:px-6 text-secondary text-base">
+                                    <td className="py-4 px-6 text-secondary text-base">
                                         {displayName(wizard.firstName)}
                                     </td>
-                                    <td className="py-4 lg:py-7 px-3 lg:px-6 text-primary font-manrope font-semibold text-base">
+                                    <td className="py-4 px-6 text-primary font-manrope font-semibold text-base">
                                         {displayName(wizard.lastName)}
                                     </td>
                                     <td className="py-4 px-6">

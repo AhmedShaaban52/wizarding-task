@@ -1,18 +1,13 @@
 "use client"
 
-import { bars, gridLines, labels, specialties } from "@/data/data"
+import { bars, gridLines, labels, pieData, specialties } from "@/data/data"
 import {
     BarChart, Bar, ResponsiveContainer, Cell,
     PieChart, Pie, Cell as PieCell,
 } from "recharts"
 
-const barData = bars.map((value, i) => ({ value, index: i }))
+const barData = bars.map((value, i) => ({ value, i }))
 
-const pieData = [
-    { name: "Alchemists", value: 45, color: "#D0BCFF" },
-    { name: "Transmuters", value: 30, color: "#FBB040" },
-    { name: "Conjurers", value: 25, color: "#BCC7DE" },
-]
 
 const RegistryActivityChart = () => {
     return (

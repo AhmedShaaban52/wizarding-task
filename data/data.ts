@@ -6,15 +6,23 @@ import archivesIcon from "@/public/archivesIcon.png";
 import boxIcon from "@/public/boxIcon.svg";
 import boxIcon2 from "@/public/boxIcon2.svg";
 import boxIcon3 from "@/public/boxIcon3.svg";
+import {
+  LocalWizardRegistry,
+  NavItem,
+  PieDataItem,
+  Specialty,
+  StatItem,
+  TableHeader,
+} from "@/types/types";
 
-export const navItems = [
+export const navItems: NavItem[] = [
   { href: "#", label: "Dashboard", icon: dashboardIcon, active: true },
   { href: "#", label: "Wizards", icon: wizzardsIcon, active: false },
   { href: "#", label: "Elixirs", icon: elixirsIcon, active: false },
   { href: "#", label: "Archives", icon: archivesIcon, active: false },
 ];
 
-export const stats = [
+export const stats: StatItem[] = [
   {
     label: "Total Registered Wizards",
     value: "1,248",
@@ -53,39 +61,44 @@ export const stats = [
   },
 ];
 
-export const bars = [
-  40, 55, 35, 58, 70, 35, 70, 55, 40, 50, 30, 60
+export const bars: number[] = [40, 55, 35, 58, 70, 35, 70, 55, 40, 50, 30, 60];
+
+export const gridLines: number[] = [25, 50, 75, 100];
+
+export const pieData: PieDataItem[] = [
+  { name: "Alchemists", value: 45, color: "#D0BCFF" },
+  { name: "Transmuters", value: 30, color: "#FBB040" },
+  { name: "Conjurers", value: 25, color: "#BCC7DE" },
 ];
 
-export const gridLines = [25, 50, 75, 100];
-export const labels = ["Moon Start", "Full Moon", "Moon End"];
+export const labels: string[] = ["Moon Start", "Full Moon", "Moon End"];
 
-export const specialties = [
+export const specialties: Specialty[] = [
   { label: "Alchemists", color: "bg-therty", percent: "45%" },
   { label: "Transmuters", color: "bg-yellow", percent: "30%" },
   { label: "Conjurers", color: "bg-[#BCC7DE]", percent: "25%" },
 ];
 
-export const tableHeaders = [
+export const tableHeaders: TableHeader[] = [
   {
     label: "ID",
     className:
-      "lg:pt-[25.5px] py-4 lg:pb-6.75 px-1 lg:px-6 lg:font-semibold text-xs lg:text-sm text-center lg:text-left",
+      "lg:pt-[25.5px] py-4 lg:pb-6.75 px-6 lg:font-semibold text-xs lg:text-sm text-center lg:text-left",
   },
   {
     label: "First Name",
     className:
-      "lg:pt-[25.5px] py-4 lg:pb-6.75 px-1 lg:px-6 lg:font-semibold text-xs lg:text-sm",
+      "lg:pt-[25.5px] py-4 lg:pb-6.75 px-6  lg:font-semibold text-xs lg:text-sm",
   },
   {
     label: "Last Name",
     className:
-      "lg:pt-[25.5px] py-4 lg:pb-6.75 px-1 lg:px-6 lg:font-semibold text-xs lg:text-sm",
+      "lg:pt-[25.5px] py-4 lg:pb-6.75 px-6 lg:font-semibold text-xs lg:text-sm",
   },
   {
     label: "Associated Elixirs",
     className:
-      "lg:pt-[25.5px] py-4 lg:pb-6.75 lg:px-6 lg:font-semibold text-xs lg:text-sm",
+      "lg:pt-[25.5px] py-4 lg:pb-6.75 px-6 lg:font-semibold text-xs lg:text-sm",
   },
   {
     label: "Actions",
@@ -94,7 +107,7 @@ export const tableHeaders = [
   },
 ];
 
-export const wizardRegistry = [
+export const wizardRegistry: LocalWizardRegistry[] = [
   {
     id: "03ca5597...a04457",
     first: "(None)",
